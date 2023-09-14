@@ -11,12 +11,14 @@
     <button id="startAgain">Start Again</button>
     <input type="color" id="colorPicker">
     <button id="rubber">Rubber</button>
+    <button id="fill">fill</button>
 </body>
 <script>
     const container = document.getElementById('container');
     const restart = document.getElementById('startAgain');
     const colorPicker = document.getElementById('colorPicker');
     const rubber = document.getElementById('rubber');
+    const fill = document.getElementById('fill')
     let eraseMode = false;
 
     for (let i = 1; i <= 10; i++) {
@@ -29,21 +31,20 @@
             row.appendChild(square);
 
             square.addEventListener('click', function() {
-                if (!eraseMode) {
-                    let selectedColour = colorPicker.value;
-                    square.style.animation = 'fadeIn 0.1s linear';
-                    square.style.backgroundColor = selectedColour;
-                }
-            });
-
-            square.addEventListener('click', function() {
                 if (eraseMode) {
                     square.style.backgroundColor = 'white';
                 } else {
                     let selectedColour = colorPicker.value;
                     square.style.backgroundColor = selectedColour;
+                    /*square.style.animation = 'fadeIn 0.1s linear';*/
                 }
             });
+
+            fill.addEventListener('click', function() {
+                let selectedColour = colorPicker.value;
+                square.style.backgroundColor = selectedColour;
+            })
+            
         }
     }
 
@@ -60,6 +61,8 @@
         rubber.textContent = 'Rubber'
         eraseMode = false;
     });
+
+    
 </script>
 </html>
 

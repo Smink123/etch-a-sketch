@@ -32,7 +32,13 @@ body {
     height: 100%;
     background-color: white;
     border-top: 0;
-    border-left: black solid 1px;
-    border-right: black solid 1px;
-    border-bottom: black solid 1px;
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
 }

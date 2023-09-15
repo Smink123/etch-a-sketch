@@ -1,68 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="container"></div>
-    <button id="startAgain">Start Again</button>
-    <input type="color" id="colorPicker">
-    <button id="rubber">Rubber</button>
-    <button id="fill">fill</button>
+  <div id="container"></div>
+  <label for="pixelSize">Enter pixel size (between 1-100)</label>
+  <input type="text" id="pixelSize" name="pixelSize">
+  <button id="submitPixelSize">submitPixelSize</button>
+  <p id="noValueEntered">please enter a number</p>
+  <button id="startAgain">Start Again</button>
+  <input type="color" id="colorPicker">
+  <button id="rubber">Rubber</button>
+  <button id="fill">fill</button>
+  <button id="randomColour">random background</button>
+  <button id="quickFlow">quick flow</button>
 </body>
 <script>
-    const container = document.getElementById('container');
-    const restart = document.getElementById('startAgain');
-    const colorPicker = document.getElementById('colorPicker');
-    const rubber = document.getElementById('rubber');
-    const fill = document.getElementById('fill')
-    let eraseMode = false;
+  const container = document.getElementById('container');
+  const restart = document.getElementById('startAgain');
+  const colorPicker = document.getElementById('colorPicker');
+  const rubber = document.getElementById('rubber');
+  const fill = document.getElementById('fill')
+  const pixelSizeForm = document.getElementById('pixelSize')
+  const pixelSizeButton = document.getElementById('submitPixelSize')
+  const noValueEntered = document.getElementById('noValueEntered')
+  const randomColourButton = document.getElementById('randomColour');
+  const quickFlow = document.getElementById('quickFlow')
+  let eraseMode = false;
 
-    for (let i = 1; i <= 10; i++) {
-        const row = document.createElement('div');
-        row.classList.add('row');
-        container.appendChild(row);
-        for (let j = 1; j <= 10; j++) {
-            const square = document.createElement('div');
-            square.classList.add('square');
-            row.appendChild(square);
-
-            square.addEventListener('click', function() {
-                if (eraseMode) {
-                    square.style.backgroundColor = 'white';
-                } else {
-                    let selectedColour = colorPicker.value;
-                    square.style.backgroundColor = selectedColour;
-                    /*square.style.animation = 'fadeIn 0.1s linear';*/
-                }
-            });
-
-            fill.addEventListener('click', function() {
-                let selectedColour = colorPicker.value;
-                square.style.backgroundColor = selectedColour;
-            })
-            
-        }
-    }
-
-    rubber.addEventListener('click', function() {
-        eraseMode = !eraseMode;
-        rubber.textContent = eraseMode ? 'Pen' : 'Rubber';
-    });
-
-    restart.addEventListener('click', function() {
-        let squares = document.querySelectorAll('.square');
-        squares.forEach(square => {
+  function pickSize(pixelNumber) {
+    for (let i = 1; i <= pixelNumber; i++) {
+      const row = document.createElement('div');
+      row.classList.add('row');
+      container.appendChild(row);
+      for (let j = 1; j <= pixelNumber; j++) {
+        const square = document.createElement('div');
+        square.classList.add('square');
+        row.appendChild(square);
+        square.addEventListener('click', function() {
+          if (eraseMode) {
             square.style.backgroundColor = 'white';
+          } else {
+            let selectedColour = colorPicker.value;
+            square.style.backgroundColor = selectedColour;
+          }
         });
-        rubber.textContent = 'Rubber'
-        eraseMode = false;
+        square.addEventListener('mouseenter', function() {
+          if (isQuickFlowOn) {
+            let selectedColour = colorPicker.value;
+            square.style.backgroundColor = selectedColour;
+          }
+        });
+        fill.addEventListener('click', function() {
+          let selectedColour = colorPicker.value;
+          square.style.backgroundColor = selectedColour;
+        })
+        randomColourButton.addEventListener('click', function() {
+          const randomColour = getRandomHexColor();
+          square.style.backgroundColor = randomColour;
+        });
+      }
+    }
+  }
+  let isQuickFlowOn = false;
+  quickFlow.addEventListener('click', function() {
+    if (isQuickFlowOn) {
+      quickFlow.textContent = 'Start quick flow'; // If on, turn it off
+    } else {
+      quickFlow.textContent = 'Stop quick flow'; // If quickFlow is off, turn it on
+    }
+    // Toggle the state of quickFlow
+    isQuickFlowOn = !isQuickFlowOn;
+  });
+
+  function mouseEnterHandler(event) {
+    let selectedColour = colorPicker.value;
+    event.target.style.backgroundColor = selectedColour;
+  }
+  pixelSizeButton.addEventListener('click', function() {
+    container.innerHTML = '';
+    let usersNumber = Number(pixelSizeForm.value);
+    if ((isNaN(usersNumber)) || pixelSizeForm.value.trim() === '') {
+      noValueEntered.textContent = 'please enter a number'
+    } else if (usersNumber > 100 || usersNumber < 1) {
+      noValueEntered.textContent = 'please enter a number between 1-100'
+    } else {
+      pickSize(usersNumber)
+      noValueEntered.textContent = '';
+      pixelSizeForm.value = '';
+      colorPicker.value = '#000000';
+      isQuickFlowOn = false;
+      quickFlow.textContent = 'Start quick flow';
+      noValueEntered.textContent = '';
+      eraseMode = false;
+      rubber.textContent = 'Rubber';
+    }
+  })
+  rubber.addEventListener('click', function() {
+    eraseMode = !eraseMode;
+    rubber.textContent = eraseMode ? 'Pen' : 'Rubber';
+  });
+  restart.addEventListener('click', function() {
+    let squares = document.querySelectorAll('.square');
+    squares.forEach(square => {
+      square.style.backgroundColor = 'white';
     });
+    rubber.textContent = 'Rubber'
+    eraseMode = false;
+  });
 
-    
+  function getRandomHexValue() {
+    return Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+  }
+
+  function getRandomHexColor() {
+    const red = getRandomHexValue();
+    const green = getRandomHexValue();
+    const blue = getRandomHexValue();
+    return `#${red}${green}${blue}`;
+  }
+  randomColourButton.addEventListener('click', function() {
+    const randomColour = getRandomHexColor();
+    square.style.backgroundColor = randomColour;
+  });
 </script>
-</html>
 
+</html>

@@ -8,6 +8,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    background-color: black;
 }
 
 #container {
@@ -46,4 +47,24 @@ body {
     font-family: 'Courier New', Courier, monospace;
     font-size: 1rem;
     color: red;
+}
+
+#colorPicker {
+    border: 1px black solid;
+    background: none; /* Remove background color for some browsers */
+    padding: 0; /* Remove padding for some browsers */
+    width: 200px;
+    height: 200px;
+    /* Other styling */
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+    border: none;
 }

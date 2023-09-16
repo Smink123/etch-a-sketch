@@ -6,18 +6,37 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: row;
     min-height: 100vh;
-    margin: 0;
-    background-color: black;
+    margin: 0 50px;
+    background-color: #e9e9e9ff;
+    color: white;
 }
 
 #container {
     width: 800px;
+    min-width: 800px;
     height: 800px;
     margin: 0;
     display: flex;
     flex-direction: column;
-    border: black solid 1px;
+    background-color: white;
+}
+
+#buttonsContainer {
+    width: 30vw;
+    height: 800px;
+    background-color: #222222;
+}
+
+h1, button, label, p {
+    font-family: 'Orbit', sans-serif;
+}
+
+button {
+    color: white;
+    background-color: #222222;
+    border: 5px red solid;
 }
 
 .row {
@@ -30,27 +49,14 @@ body {
 .square {
     flex: 1;
     height: 100%;
-    /*background-color: white;*/
     border-top: 0;
 }
 
-@keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-}
-
 #noValueEntered {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1rem;
     color: red;
 }
 
 #colorPicker {
-    border: 1px black solid;
     background: none; /* Remove background color for some browsers */
     padding: 0; /* Remove padding for some browsers */
     width: 200px;
@@ -66,5 +72,5 @@ input[type="color"]::-webkit-color-swatch-wrapper {
     padding: 0;
 }
 input[type="color"]::-webkit-color-swatch {
-    border: none;
+    border: 5px red solid;
 }

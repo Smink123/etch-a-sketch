@@ -6,10 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PIXEL PAINTER</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="container"></div>
-  <label for="pixelSize">Enter pixel size (between 1-100)</label>
+  <div id="buttonsContainer">
+    <div>
+      <h1>PIXEL</h1>
+    </div>
+    <label for="pixelSize">Enter pixel size (between 1-100)</label>
   <input type="text" id="pixelSize" name="pixelSize">
   <button id="submitPixelSize">submitPixelSize</button>
   <p id="noValueEntered">please enter a number</p>
@@ -19,6 +26,10 @@
   <button id="fill">fill</button>
   <button id="randomColour">random background</button>
   <button id="quickFlow">quick flow</button>
+  <div>
+    <h1>PAINTER</h1>
+  </div>
+  </div>
 </body>
 <script>
   const container = document.getElementById('container');
@@ -69,7 +80,7 @@
   }
   let isQuickFlowOn = false;
   quickFlow.addEventListener('click', function() {
-    if (isQuickFlowOn) {
+    if (isQuickFlowOn === true) {
       quickFlow.textContent = 'Start quick flow'; // If on, turn it off
     } else {
       quickFlow.textContent = 'Stop quick flow'; // If quickFlow is off, turn it on
@@ -102,9 +113,13 @@
     }
   })
   rubber.addEventListener('click', function() {
-    eraseMode = !eraseMode;
-    rubber.textContent = eraseMode ? 'Pen' : 'Rubber';
-  });
+  eraseMode = !eraseMode;
+  rubber.textContent = eraseMode ? 'Pen' : 'Rubber';
+  if (isQuickFlowOn === true) {
+    isQuickFlowOn = false;
+    quickFlow.textContent = 'Start quick flow';
+  }
+});
   restart.addEventListener('click', function() {
     let squares = document.querySelectorAll('.square');
     squares.forEach(square => {

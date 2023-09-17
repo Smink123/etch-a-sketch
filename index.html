@@ -13,23 +13,46 @@
 <body>
   <div id="container"></div>
   <div id="buttonsContainer">
-    <div>
-      <h1>PIXEL</h1>
+    <div id="pixelHeaderContainer">
+      <h1 id="pixelH">PIXEL</h1>
     </div>
-    <label for="pixelSize">Enter pixel size (between 1-100)</label>
-  <input type="text" id="pixelSize" name="pixelSize">
-  <button id="submitPixelSize">submitPixelSize</button>
-  <p id="noValueEntered">please enter a number</p>
-  <button id="startAgain">Start Again</button>
-  <input type="color" id="colorPicker">
-  <button id="rubber">Rubber</button>
-  <button id="fill">fill</button>
-  <button id="randomColour">random background</button>
-  <button id="quickFlow">quick flow</button>
-  <div>
-    <h1>PAINTER</h1>
+    <div id="shape1stRow">
+      <p id="noValueEntered">please enter a number</p>
+    </div>
+    <div id="pixelSizeContainer">
+      <label for="pixelSize">Enter pixel size (between 1-100)</label>
+      <input type="text" id="pixelSize" name="pixelSize">
+      <button id="submitPixelSize">submit</button>
+    </div>
+    <div id="shape2ndRow"></div>
+    <div id="randomColourContainer">
+      <button id="randomColour">random background</button>
+    </div>
+    <div id="shape3rdRow"></div>
+    <div id="colourContainer">
+      <input type="color" id="colorPicker">
+    </div>
+    <div id="shape4thRow"></div>
+    <div id="quickFlowContainer">
+      <button id="quickFlow">quick flow</button>
+    </div>
+    <div id="fillContainer">
+      <button id="fill">fill</button>
+    </div>
+    <div id="shape5thRow"></div>
+    <div id="rubberContainer">
+      <button id="rubber">Rubber</button>
+    </div>
+    <div id="startAgainContainer">
+      <button id="startAgain">Start Again</button>
+    </div>
+    <div id="lastRowShape"></div>
+    <div id="painterHeaderContainer">
+      <h1 id="painterH">PAINTER</h1>
+    </div>
   </div>
   </div>
+<div>
 </body>
 <script>
   const container = document.getElementById('container');

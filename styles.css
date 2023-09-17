@@ -13,6 +13,7 @@ body {
     color: white;
 }
 
+
 #container {
     width: 800px;
     min-width: 800px;
@@ -27,16 +28,191 @@ body {
     width: 30vw;
     height: 800px;
     background-color: #222222;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    padding: 10px;
+}
+
+#buttonsContainer div {
+    margin: 20px;
+    border-radius: 20px;
 }
 
 h1, button, label, p {
     font-family: 'Orbit', sans-serif;
 }
 
+h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 4.8rem;
+    padding-bottom: 10px;
+    position: absolute;
+}
+
+#pixelHeaderContainer {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#shape1stRow {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    background-color: #6355a0ff;
+}
+
+#pixelSizeContainer {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    background-color: burlywood;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#shape2ndRow {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    background-color: pink;
+}
+
+#randomColourContainer {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    background-color: purple;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#shape3rdRow {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    background-color: brown;
+}
+
+#colourContainer {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 6;
+    background-color: aquamarine;
+}
+
+#colorPicker {
+    background: none;
+    padding: 0;
+    width: 90%;
+    height: 90%;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+    border: 5px red solid;
+}
+
+#shape4thRow {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    background-color: peru;
+}
+
+#quickFlowContainer {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    background-color: lightskyblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#fillContainer {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 5;
+    grid-row-end: 7;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#shape5thRow {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 5;
+    grid-row-end: 7;
+    background-color: forestgreen;
+}
+
+#rubberContainer {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    background-color: crimson;
+}
+
+#startAgainContainer {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 6;
+    grid-row-end: 7;
+    background-color: violet;
+}
+
+#lastRowShape {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 7;
+    grid-row-end: 8;
+    background-color: #0991cdff;
+}
+
+#painterHeaderContainer {
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 7;
+    grid-row-end: 7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 button {
     color: white;
     background-color: #222222;
     border: 5px red solid;
+    width: 100%;
+    height: 100%;
 }
 
 .row {
@@ -54,23 +230,4 @@ button {
 
 #noValueEntered {
     color: red;
-}
-
-#colorPicker {
-    background: none; /* Remove background color for some browsers */
-    padding: 0; /* Remove padding for some browsers */
-    width: 200px;
-    height: 200px;
-    /* Other styling */
-}
-
-input[type="color"] {
-    -webkit-appearance: none;
-    border: none;
-}
-input[type="color"]::-webkit-color-swatch-wrapper {
-    padding: 0;
-}
-input[type="color"]::-webkit-color-swatch {
-    border: 5px red solid;
 }

@@ -11,10 +11,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
 </head>
 <body>
-  <p id="noValueEntered">please enter a number</p>
   <div id="container">
   </div>
   <div id="buttonsContainer">
+    <div id="warningContainer">
+      <p id="noValueEntered">ENTER A NUMBER</p>
+    </div>
     <div id="pixelHeaderContainer">
       <h1 id="pixelH">PIXEL</h1>
     </div>
@@ -69,6 +71,7 @@
   const quickFlow = document.getElementById('quickFlow')
   const colorTitle = document.getElementById('colourTitle')
   const pixelSizeContainer = document.getElementById('pixelSizeContainer')
+  const warningContainer = document.getElementById('warningContainer')
   let eraseMode = false;
 
   colorPicker.value = '#AB924D';
@@ -143,12 +146,18 @@ colorPicker.addEventListener('mouseleave', function() {
     container.innerHTML = '';
     let usersNumber = Number(pixelSizeForm.value);
     if ((isNaN(usersNumber)) || pixelSizeForm.value.trim() === '') {
-      noValueEntered.textContent = 'please enter a number'
+      /*warningContainer.style.display = 'flex'*/
+      warningContainer.style.opacity = '1'
+      noValueEntered.textContent = 'ENTER A NUMBER'
       container.style.cursor = 'not-allowed'
     } else if (usersNumber > 100 || usersNumber < 1) {
-      noValueEntered.textContent = 'please enter a number between 1-100'
+      warningContainer.style.opacity = '1'
+      /*warningContainer.style.display = 'flex'*/
+      noValueEntered.innerHTML = 'ENTER A NUMBER BETWEEN<br>1-100'
       container.style.cursor = 'not-allowed'
     } else {
+      warningContainer.style.opacity = '0'
+      /*warningContainer.style.display = 'none'*/
       pickSize(usersNumber)
       container.style.cursor = 'pointer'
       noValueEntered.textContent = '';

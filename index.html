@@ -68,13 +68,26 @@
   const randomColourButton = document.getElementById('randomColour');
   const quickFlow = document.getElementById('quickFlow')
   const colorTitle = document.getElementById('colourTitle')
+  const pixelSizeContainer = document.getElementById('pixelSizeContainer')
   let eraseMode = false;
 
-  colorPicker.value = '#222222';
+  colorPicker.value = '#AB924D';
   container.style.cursor = 'not-allowed'
   colorTitle.addEventListener('click', function() {
     colorPicker.click();
   })
+
+  colorPicker.addEventListener('mouseenter', function() {
+    colorTitle.style.display = 'none';
+});
+
+colorPicker.addEventListener('input', function() {
+    colorTitle.style.display = 'none';
+});
+
+colorPicker.addEventListener('mouseleave', function() {
+    colorTitle.style.display = 'block';
+});
 
   function pickSize(pixelNumber) {
     for (let i = 1; i <= pixelNumber; i++) {
@@ -126,6 +139,7 @@
     event.target.style.backgroundColor = selectedColour;
   }
   pixelSizeButton.addEventListener('click', function() {
+
     container.innerHTML = '';
     let usersNumber = Number(pixelSizeForm.value);
     if ((isNaN(usersNumber)) || pixelSizeForm.value.trim() === '') {
@@ -139,7 +153,7 @@
       container.style.cursor = 'pointer'
       noValueEntered.textContent = '';
       pixelSizeForm.value = '';
-      colorPicker.value = '#222222';
+      colorPicker.value = '#AB924D';
       isQuickFlowOn = false;
       quickFlow.textContent = 'start quick flow';
       noValueEntered.textContent = '';

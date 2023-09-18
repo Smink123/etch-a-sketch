@@ -48,6 +48,10 @@ button, #colourTitle, input {
     font-size: 0.9rem;
 }
 
+button:active {
+    top: 3px;
+}
+
 h1 {
     text-align: center;
     margin: 0;
@@ -95,8 +99,11 @@ label {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 20px;
     border: #009456ff solid 6px;
+}
+
+#pixelSizeContainer:active {
+    top: 3px;
 }
 
 #submitPixelSize {
@@ -117,7 +124,6 @@ input {
 }
 
 input:focus {
-    color: white;
     border: none;
     outline: none;
 }
@@ -139,12 +145,21 @@ input:focus {
     align-items: center;
     justify-content: center;
     position: relative;
-    border-color: #ab924dff;
+    /*border-color: #ab924dff;*/
+}
+
+/*#colourContainer:hover {
+    border-color: #222222;
+}*/
+
+#colourContainer:active {
+    top: 3px;
 }
 
 #colourTitle {
     position: absolute;
     margin: 0;
+    color: black;
 }
 
 #colourTitle:hover {
@@ -193,10 +208,11 @@ input[type="color"]::-webkit-color-swatch-wrapper {
     padding: 0;
 }
 input[type="color"]::-webkit-color-swatch {
-    border: 6px #ab924dff solid;
+    border: none;
     border-radius: 20px;
-
 }
+
+
 
 #shape4thRow {
     grid-column-start: 1;
@@ -231,7 +247,7 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 #fill {
-    border-color: #ab924dff;
+    border-color: #AB924D;
 }
 
 #shape5thRow {
@@ -239,7 +255,7 @@ input[type="color"]::-webkit-color-swatch {
     grid-column-end: 3;
     grid-row-start: 5;
     grid-row-end: 7;
-    background-color: forestgreen;
+    background-color: #009456ff;
 }
 
 #rubberContainer {
@@ -263,6 +279,55 @@ input[type="color"]::-webkit-color-swatch {
 #startAgain {
     border-color: #ec9cb6ff;
 }
+
+#startAgain, #rubber, #fill, #quickFlow, #randomColour, #pixelSizeContainer {
+    z-index: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+#startAgain:hover, #rubber:hover, #fill:hover, #quickFlow:hover, #randomColour:hover, #pixelSizeContainer:hover {
+    color: white;
+}
+
+#startAgain:before, #rubber:before, #fill:before, #quickFlow:before, #randomColour:before, #pixelSizeContainer:before {
+    -webkit-transition: bottom 0.12s ease-in;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    position: absolute;
+    content: "";
+}
+
+#startAgain:before {
+    background-color: #ec9cb6ff;
+}
+
+#rubber:before {
+    background-color: #f5ba31ff;
+}
+
+#fill:before {
+    background-color: #ab924dff;
+}
+
+#quickFlow:before {
+    background-color: #0991cdff;
+}
+
+#randomColour:before {
+    background-color: #ea7650ff;
+}
+
+#pixelSizeContainer:before {
+    background-color: #009456ff;
+}
+
+#startAgain:hover:before, #rubber:hover:before, #fill:hover:before, #quickFlow:hover:before, #randomColour:hover:before, #pixelSizeContainer:hover:before {
+    bottom: 0;
+  }
 
 #lastRowShape {
     grid-column-start: 1;

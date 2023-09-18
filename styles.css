@@ -25,13 +25,14 @@ body {
 }
 
 #buttonsContainer {
-    width: 30vw;
+    width: 35vw;
     height: 800px;
     background-color: #222222;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(7, 1fr);
     padding: 10px;
+    min-width: 530px;
 }
 
 #buttonsContainer div {
@@ -39,8 +40,12 @@ body {
     border-radius: 20px;
 }
 
-h1, button, label, p {
+h1, button, label, p, input {
     font-family: 'Orbit', sans-serif;
+}
+
+button, #colourTitle, input {
+    font-size: 0.9rem;
 }
 
 h1 {
@@ -69,16 +74,52 @@ h1 {
     background-color: #6355a0ff;
 }
 
+#pixelSize {
+    width: 90%;
+}
+
+#pixelSize::placeholder {
+    color: white;
+}
+
+label {
+    display: none;
+}
+
 #pixelSizeContainer {
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 3;
-    background-color: burlywood;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+    padding: 20px;
+    border: #009456ff solid 6px;
+}
+
+#submitPixelSize {
+    border: none;
+    margin: 0;
+    background-color: transparent;
+    width: 10%;
+    height: 100%;
+}
+
+input {
+    background: transparent;
+    border: none;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    padding: 20px;
+}
+
+input:focus {
+    color: white;
+    border: none;
+    outline: none;
 }
 
 #shape2ndRow {
@@ -86,27 +127,7 @@ h1 {
     grid-column-end: 5;
     grid-row-start: 2;
     grid-row-end: 3;
-    background-color: pink;
-}
-
-#randomColourContainer {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    background-color: purple;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#shape3rdRow {
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    background-color: brown;
+    background-color: #ea7650ff;
 }
 
 #colourContainer {
@@ -114,14 +135,54 @@ h1 {
     grid-column-end: 5;
     grid-row-start: 3;
     grid-row-end: 6;
-    background-color: aquamarine;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-color: #ab924dff;
+}
+
+#colourTitle {
+    position: absolute;
+    margin: 0;
+}
+
+#colourTitle:hover {
+    cursor: pointer;
+}
+
+#randomColourContainer {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+#randomColour {
+    border-color: #ea7650ff;
+}
+
+#shape3rdRow {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    background-color: #f5ba31ff;
+}
+
+#colourContainer {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 6;
 }
 
 #colorPicker {
     background: none;
     padding: 0;
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
 }
 
 input[type="color"] {
@@ -132,7 +193,9 @@ input[type="color"]::-webkit-color-swatch-wrapper {
     padding: 0;
 }
 input[type="color"]::-webkit-color-swatch {
-    border: 5px red solid;
+    border: 6px #ab924dff solid;
+    border-radius: 20px;
+
 }
 
 #shape4thRow {
@@ -140,7 +203,7 @@ input[type="color"]::-webkit-color-swatch {
     grid-column-end: 2;
     grid-row-start: 4;
     grid-row-end: 5;
-    background-color: peru;
+    background-color: #ec9cb6ff;
 }
 
 #quickFlowContainer {
@@ -148,10 +211,13 @@ input[type="color"]::-webkit-color-swatch {
     grid-column-end: 4;
     grid-row-start: 4;
     grid-row-end: 5;
-    background-color: lightskyblue;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#quickFlow {
+    border-color: #0991cdff;
 }
 
 #fillContainer {
@@ -159,10 +225,13 @@ input[type="color"]::-webkit-color-swatch {
     grid-column-end: 2;
     grid-row-start: 5;
     grid-row-end: 7;
-    background-color: blue;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#fill {
+    border-color: #ab924dff;
 }
 
 #shape5thRow {
@@ -178,7 +247,10 @@ input[type="color"]::-webkit-color-swatch {
     grid-column-end: 4;
     grid-row-start: 5;
     grid-row-end: 6;
-    background-color: crimson;
+}
+
+#rubber {
+    border-color: #f5ba31ff;
 }
 
 #startAgainContainer {
@@ -186,7 +258,10 @@ input[type="color"]::-webkit-color-swatch {
     grid-column-end: 5;
     grid-row-start: 6;
     grid-row-end: 7;
-    background-color: violet;
+}
+
+#startAgain {
+    border-color: #ec9cb6ff;
 }
 
 #lastRowShape {
@@ -210,9 +285,12 @@ input[type="color"]::-webkit-color-swatch {
 button {
     color: white;
     background-color: #222222;
-    border: 5px red solid;
+    border: 6px solid;
     width: 100%;
     height: 100%;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 20px;
 }
 
 .row {

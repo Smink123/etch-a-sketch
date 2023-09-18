@@ -11,18 +11,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="container"></div>
+  <p id="noValueEntered">please enter a number</p>
+  <div id="container">
+  </div>
   <div id="buttonsContainer">
     <div id="pixelHeaderContainer">
       <h1 id="pixelH">PIXEL</h1>
     </div>
     <div id="shape1stRow">
-      <p id="noValueEntered">please enter a number</p>
     </div>
     <div id="pixelSizeContainer">
-      <label for="pixelSize">Enter pixel size (between 1-100)</label>
-      <input type="text" id="pixelSize" name="pixelSize">
-      <button id="submitPixelSize">submit</button>
+      <label for="pixelSize">pixel size:</label>
+      <input type="text" id="pixelSize" name="pixelSize" placeholder="Enter a number between 1-100">
+      <button id="submitPixelSize">></button>
     </div>
     <div id="shape2ndRow"></div>
     <div id="randomColourContainer">
@@ -31,6 +32,7 @@
     <div id="shape3rdRow"></div>
     <div id="colourContainer">
       <input type="color" id="colorPicker">
+      <p id="colourTitle">colour</p>
     </div>
     <div id="shape4thRow"></div>
     <div id="quickFlowContainer">
@@ -41,10 +43,10 @@
     </div>
     <div id="shape5thRow"></div>
     <div id="rubberContainer">
-      <button id="rubber">Rubber</button>
+      <button id="rubber">rubber</button>
     </div>
     <div id="startAgainContainer">
-      <button id="startAgain">Start Again</button>
+      <button id="startAgain">start again</button>
     </div>
     <div id="lastRowShape"></div>
     <div id="painterHeaderContainer">
@@ -65,7 +67,14 @@
   const noValueEntered = document.getElementById('noValueEntered')
   const randomColourButton = document.getElementById('randomColour');
   const quickFlow = document.getElementById('quickFlow')
+  const colorTitle = document.getElementById('colourTitle')
   let eraseMode = false;
+
+  colorPicker.value = '#222222';
+  container.style.cursor = 'not-allowed'
+  colorTitle.addEventListener('click', function() {
+    colorPicker.click();
+  })
 
   function pickSize(pixelNumber) {
     for (let i = 1; i <= pixelNumber; i++) {
@@ -104,9 +113,9 @@
   let isQuickFlowOn = false;
   quickFlow.addEventListener('click', function() {
     if (isQuickFlowOn === true) {
-      quickFlow.textContent = 'Start quick flow'; // If on, turn it off
+      quickFlow.textContent = 'start quick flow'; // If on, turn it off
     } else {
-      quickFlow.textContent = 'Stop quick flow'; // If quickFlow is off, turn it on
+      quickFlow.textContent = 'stop quick flow'; // If quickFlow is off, turn it on
     }
     // Toggle the state of quickFlow
     isQuickFlowOn = !isQuickFlowOn;
@@ -121,26 +130,29 @@
     let usersNumber = Number(pixelSizeForm.value);
     if ((isNaN(usersNumber)) || pixelSizeForm.value.trim() === '') {
       noValueEntered.textContent = 'please enter a number'
+      container.style.cursor = 'not-allowed'
     } else if (usersNumber > 100 || usersNumber < 1) {
       noValueEntered.textContent = 'please enter a number between 1-100'
+      container.style.cursor = 'not-allowed'
     } else {
       pickSize(usersNumber)
+      container.style.cursor = 'pointer'
       noValueEntered.textContent = '';
       pixelSizeForm.value = '';
-      colorPicker.value = '#000000';
+      colorPicker.value = '#222222';
       isQuickFlowOn = false;
-      quickFlow.textContent = 'Start quick flow';
+      quickFlow.textContent = 'start quick flow';
       noValueEntered.textContent = '';
       eraseMode = false;
-      rubber.textContent = 'Rubber';
+      rubber.textContent = 'rubber';
     }
   })
   rubber.addEventListener('click', function() {
   eraseMode = !eraseMode;
-  rubber.textContent = eraseMode ? 'Pen' : 'Rubber';
+  rubber.textContent = eraseMode ? 'pen' : 'rubber';
   if (isQuickFlowOn === true) {
     isQuickFlowOn = false;
-    quickFlow.textContent = 'Start quick flow';
+    quickFlow.textContent = 'start quick flow';
   }
 });
   restart.addEventListener('click', function() {
@@ -148,7 +160,7 @@
     squares.forEach(square => {
       square.style.backgroundColor = 'white';
     });
-    rubber.textContent = 'Rubber'
+    rubber.textContent = 'rubber'
     eraseMode = false;
   });
 
